@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ΚΑΤΑΜΕΤΡΙΣΗ ΣΥΝΕΛΕΥΣΗ 2026</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      :root {
+        --primary-bg: #f8f9fa;
+        --secondary-bg: #ffffff;
+        --text-color: #212529;
+        --primary-color: #007bff;
+        --primary-hover-color: #0056b3;
+        --border-color: #dee2e6;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --border-radius: 8px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body,
+      #root {
+        height: 100%;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        background-color: var(--primary-bg);
+        color: var(--text-color);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 2rem;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 600px;
+        background-color: var(--secondary-bg);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+        padding: 2rem;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+      }
+
+      header p {
+        font-size: 1.1rem;
+        color: #6c757d;
+      }
+
+      .name-list {
+        list-style: none;
+        margin-bottom: 2rem; /* Increased margin for better spacing */
+      }
+
+      .name-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .name-item:last-child {
+        border-bottom: none;
+      }
+
+      .name-label {
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
+
+      .number-input {
+        width: 100px;
+        padding: 0.5rem;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        font-size: 1rem;
+        text-align: right;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+
+      .number-input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+      }
+
+      /* Remove arrows from number input */
+      .number-input::-webkit-outer-spin-button,
+      .number-input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      .number-input[type=number] {
+        -moz-appearance: textfield;
+      }
+
+      .result-container {
+        text-align: center;
+        background-color: var(--primary-bg);
+        padding: 1.5rem;
+        border-radius: var(--border-radius);
+      }
+
+      .result-container h2 {
+        font-size: 1.5rem;
+        font-weight: 400;
+      }
+
+      .total-sum {
+        font-weight: 700;
+        color: var(--primary-color);
+      }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const { useState, useEffect } = React;
+      const { createRoot } = ReactDOM;
+
+      const App = () => {
+        const names = [
+          'Amelie', 'Ben', 'Clara', 'David', 'Emilia',
+          'Felix', 'Greta', 'Hannah', 'Isabelle', 'Jonas',
+        ];
+
+        const [numbers, setNumbers] = useState(Array(names.length).fill(''));
+        const [total, setTotal] = useState(0);
+
+        const handleNumberChange = (index, value) => {
+          const newNumbers = [...numbers];
+          newNumbers[index] = value;
+          setNumbers(newNumbers);
+        };
+
+        useEffect(() => {
+          const sum = numbers.reduce((acc, current) => {
+            const num = Number(current);
+            return acc + (isNaN(num) ? 0 : num);
+          }, 0);
+          setTotal(sum);
+        }, [numbers]);
+
+        return (
+          <div className="container">
+            <header>
+              <h1>ΚΑΤΑΜΕΤΡΙΣΗ ΣΥΝΕΛΕΥΣΗ 2026</h1>
+              <p>Die Gesamtsumme wird automatisch aktualisiert, während Sie Zahlen eingeben.</p>
+            </header>
+            <main>
+              <ul className="name-list" aria-label="Liste von Namen und Zahleneingaben">
+                {names.map((name, index) => (
+                  <li key={index} className="name-item">
+                    <label htmlFor={`number-input-${index}`} className="name-label">{name}</label>
+                    <input
+                      id={`number-input-${index}`}
+                      type="number"
+                      className="number-input"
+                      value={numbers[index]}
+                      onChange={(e) => handleNumberChange(index, e.target.value)}
+                      placeholder="0"
+                      aria-label={`Zahl für ${name}`}
+                    />
+                  </li>
+                ))}
+              </ul>
+              <div className="result-container" aria-live="polite">
+                <h2>Gesamtsumme: <span className="total-sum">{total}</span></h2>
+              </div>
+            </main>
+          </div>
+        );
+      };
+
+      const container = document.getElementById('root');
+      const root = createRoot(container);
+      root.render(<App />);
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

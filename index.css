@@ -1,0 +1,124 @@
+:root {
+  --primary-bg: #f8f9fa;
+  --secondary-bg: #ffffff;
+  --text-color: #212529;
+  --primary-color: #007bff;
+  --primary-hover-color: #0056b3;
+  --border-color: #dee2e6;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  background-color: var(--secondary-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+header p {
+  font-size: 1.1rem;
+  color: #6c757d;
+}
+
+.name-list {
+  list-style: none;
+  margin-bottom: 2rem; /* Increased margin for better spacing */
+}
+
+.name-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.name-item:last-child {
+  border-bottom: none;
+}
+
+.name-label {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.number-input {
+  width: 100px;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  text-align: right;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.number-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Remove arrows from number input */
+.number-input::-webkit-outer-spin-button,
+.number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.number-input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.result-container {
+  text-align: center;
+  background-color: var(--primary-bg);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+}
+
+.result-container h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.total-sum {
+  font-weight: 700;
+  color: var(--primary-color);
+}

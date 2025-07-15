@@ -1,72 +1,25 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Echtzeit-Textfeld mit Firebase</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      padding: 2rem;
-      background-color: #f5f5f5;
-    }
-    h1 {
-      color: #333;
-    }
-    textarea {
-      width: 100%;
-      max-width: 600px;
-      height: 300px;
-      padding: 1rem;
-      font-size: 1rem;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      resize: none;
-    }
-    small {
-      color: #666;
-    }
-  </style>
-
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-database-compat.js"></script>
+  <head>
+    <title>ΣΥΝΕΛΕΥΣΗ ΠΕΡΙΦΕΡΕΙΑΣ ΚΡΗΤΗ 2026</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="/index.css">
 </head>
-<body>
-  <h1>📝 Echtzeit-Textfeld</h1>
-  <textarea id="liveText" placeholder="Schreibe hier..."></textarea>
-  <p><small>Alle Besucher sehen denselben Text. Änderungen sind live sichtbar.</small></p>
-
-  <script>
-    // 🔧 Ersetze diese Konfiguration mit deinem Firebase-Projekt!
-    const firebaseConfig = {
-      apiKey: "AIzaSyAni0T5TFTjuZjFEFC_sh8cxgsme5iMiDM",
-      authDomain: "crete-f2354.firebaseapp.com",
-      databaseURL: https://kostaham.github.io/synelefsi-crete/,
-      storageBucket: "crete-f2354.firebasestorage.app",
-      messagingSenderId: "709466530046",
-      appId: "1:709466530046:web:5ef0e91390edcc567485af"
-    };
-
-    // Firebase initialisieren
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-    const textRef = db.ref("sharedText");
-
-    const textarea = document.getElementById("liveText");
-
-    // Änderungen an Firebase senden
-    textarea.addEventListener("input", () => {
-      textRef.set(textarea.value);
-    });
-
-    // Änderungen aus Firebase empfangen
-    textRef.on("value", (snapshot) => {
-      const val = snapshot.val();
-      if (val !== null && textarea.value !== val) {
-        textarea.value = val;
-      }
-    });
-  </script>
+  <body>
+    <main id="app">
+      <h1>ΣΥΝΕΛΕΥΣΗ ΠΕΡΙΦΕΡΕΙΑΣ ΚΡΗΤΗ 2026</h1>
+      <ul id="name-list"></ul>
+      <div id="total-container">
+        <span>ΣΥΝΟΛΟ:</span>
+        <span id="total-sum">0</span>
+      </div>
+    </main>
+    <script src="index.js" defer></script>
+  <script type="module" src="/index.tsx"></script>
 </body>
 </html>
